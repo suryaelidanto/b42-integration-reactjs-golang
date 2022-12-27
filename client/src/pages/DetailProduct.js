@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import convertRupiah from 'rupiah-format';
-import { useQuery, useMutation } from 'react-query';
 
 import Navbar from '../components/Navbar';
 
@@ -11,8 +10,6 @@ import dataProduct from '../fakeData/product';
 export default function DetailProduct() {
   let navigate = useNavigate();
   let { id } = useParams();
-
-  let product = {};
 
   return (
     <div>
@@ -33,7 +30,12 @@ export default function DetailProduct() {
               {convertRupiah.convert(product?.price)}
             </div>
             <div className="d-grid gap-2 mt-5">
-              <button className="btn btn-buy">Buy</button>
+              <button
+                onClick={(e) => handleBuy.mutate(e)}
+                className="btn btn-buy"
+              >
+                Buy
+              </button>
             </div>
           </Col>
         </Row>

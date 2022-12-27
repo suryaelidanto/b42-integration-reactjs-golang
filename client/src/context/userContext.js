@@ -11,12 +11,16 @@ const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    // add case "USER_SUCCESS" here ..
     case 'LOGIN_SUCCESS':
+      // Set localstorage item with key "token" here ...
       return {
         isLogin: true,
         user: payload,
       };
+    // add case "AUTH_ERROR" here ..
     case 'LOGOUT':
+      // Remove localstorage item with key "token" here ...
       return {
         isLogin: false,
         user: {},

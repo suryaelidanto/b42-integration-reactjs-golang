@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import dateFormat from 'dateformat';
 import convertRupiah from 'rupiah-format';
-import { useQuery } from 'react-query';
 
 import Navbar from '../components/Navbar';
 
@@ -18,9 +17,6 @@ export default function Profile() {
 
   const [state] = useContext(UserContext);
 
-  let transactions = [];
-  let profile = {};
-
   return (
     <>
       <Navbar title={title} />
@@ -31,17 +27,17 @@ export default function Profile() {
             <Row>
               <Col md="6">
                 <img
-                  src={profile?.image ? profile.image : imgBlank}
+                  src={profile?.image ? profile?.image : imgBlank}
                   className="img-fluid rounded"
                   alt="avatar"
                 />
               </Col>
               <Col md="6">
                 <div className="profile-header">Name</div>
-                <div className="profile-content">{state.user.name}</div>
+                <div className="profile-content">{state?.user?.name}</div>
 
                 <div className="profile-header">Email</div>
-                <div className="profile-content">{state.user.email}</div>
+                <div className="profile-content">{state?.user?.email}</div>
 
                 <div className="profile-header">Phone</div>
                 <div className="profile-content">

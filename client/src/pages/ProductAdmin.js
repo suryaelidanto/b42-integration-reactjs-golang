@@ -3,7 +3,6 @@ import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import ShowMoreText from 'react-show-more-text';
 import rupiahFormat from 'rupiah-format';
-import { useQuery, useMutation } from 'react-query';
 
 import NavbarAdmin from '../components/NavbarAdmin';
 import DeleteData from '../components/modal/DeleteData';
@@ -12,7 +11,6 @@ import imgEmpty from '../assets/empty.svg';
 
 export default function ProductAdmin() {
   let navigate = useNavigate();
-  let products = [];
 
   const title = 'Product admin';
   document.title = 'DumbMerch | ' + title;
@@ -77,6 +75,7 @@ export default function ProductAdmin() {
                       <td className="align-middle">{item.name}</td>
                       <td className="align-middle">
                         <ShowMoreText
+                          /* Default options */
                           lines={1}
                           more="show"
                           less="hide"

@@ -2,7 +2,12 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
-import { useMutation } from 'react-query';
+
+// Import useMutation from react-query here ...
+import { useMutation } from 'react-query'
+
+// Get API config here ...
+import { API } from '../../config/api'
 
 export default function Login() {
   let navigate = useNavigate();
@@ -14,12 +19,24 @@ export default function Login() {
 
   const [message, setMessage] = useState(null);
 
+  // Create variabel for store data with useState here ...
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  // const { email, password } = form;
+
   const handleChange = (e) => {
-    // setForm({
-    //   ...form,
-    //   [e.target.name]: e.target.value,
-    // });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
+
+  // Create function for handle insert data process with useMutation here ...
+
 
   return (
     <div className="d-flex justify-content-center">
@@ -36,6 +53,7 @@ export default function Login() {
             <input
               type="email"
               placeholder="Email"
+              value={email}
               name="email"
               onChange={handleChange}
               className="px-3 py-2 mt-3"
@@ -43,6 +61,7 @@ export default function Login() {
             <input
               type="password"
               placeholder="Password"
+              value={password}
               name="password"
               onChange={handleChange}
               className="px-3 py-2 mt-3"

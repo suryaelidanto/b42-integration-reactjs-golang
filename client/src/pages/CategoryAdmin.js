@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
-import { useQuery, useMutation } from 'react-query';
 
 import NavbarAdmin from '../components/NavbarAdmin';
 import DeleteData from '../components/modal/DeleteData';
@@ -10,10 +9,13 @@ import imgEmpty from '../assets/empty.svg';
 
 export default function CategoryAdmin() {
   let navigate = useNavigate();
-  let categories = [];
 
   const title = 'Category admin';
   document.title = 'DumbMerch | ' + title;
+
+  const handleEdit = (id) => {
+    navigate(`/update-category/${id}`);
+  };
 
   const addCategory = () => {
     navigate('/add-category');

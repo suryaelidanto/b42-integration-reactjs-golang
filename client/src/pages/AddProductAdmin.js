@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
-import { useMutation } from 'react-query';
+
+// Import useMutation and useQuery from react-query here ...
 
 import NavbarAdmin from '../components/NavbarAdmin';
+
+// Get API config here ...
 
 export default function AddProductAdmin() {
   console.clear();
@@ -15,6 +18,8 @@ export default function AddProductAdmin() {
   const [categories, setCategories] = useState([]); //Store all category data
   const [categoryId, setCategoryId] = useState([]); //Save the selected category id
   const [preview, setPreview] = useState(null); //For image preview
+
+  // Create variabel for store data with useState here ...
 
   // Fetching category data
   const getCategories = async () => {
@@ -58,6 +63,8 @@ export default function AddProductAdmin() {
     }
   };
 
+  // Create function for handle insert product data with useMutation here ...
+
   // useEffect(() => {
   //   getCategories();
   // }, []);
@@ -71,7 +78,7 @@ export default function AddProductAdmin() {
             <div className="text-header-category mb-4">Add Product</div>
           </Col>
           <Col xs="12">
-            <form>
+            <form onSubmit={(e) => handleSubmit.mutate(e)}>
               {preview && (
                 <div>
                   <img
@@ -131,14 +138,14 @@ export default function AddProductAdmin() {
                 >
                   Category
                 </div>
-                {categories.map((item, index) => (
+                {categories?.map((item, index) => (
                   <label className="checkbox-inline me-4" key={index}>
                     <input
                       type="checkbox"
-                      value={item.id}
+                      value={item?.id}
                       onClick={handleChangeCategoryId}
-                    />
-                    {item.name}
+                    />{' '}
+                    {item?.name}
                   </label>
                 ))}
               </div>

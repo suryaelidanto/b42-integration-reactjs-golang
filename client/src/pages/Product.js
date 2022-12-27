@@ -4,20 +4,15 @@ import Masonry from 'react-masonry-css';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { UserContext } from '../context/userContext';
-import { useQuery } from 'react-query';
 
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/card/ProductCard';
 
 import imgEmpty from '../assets/empty.svg';
 
-// API config
-
 export default function Product() {
   const title = 'Shop';
   document.title = 'DumbMerch | ' + title;
-
-  let products = [];
 
   const breakpointColumnsObj = {
     default: 6,

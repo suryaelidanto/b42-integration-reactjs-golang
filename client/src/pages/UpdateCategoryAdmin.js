@@ -5,6 +5,8 @@ import { useQuery, useMutation } from 'react-query';
 
 import NavbarAdmin from '../components/NavbarAdmin';
 
+import { API } from '../config/api';
+
 export default function UpdateCategoryAdmin() {
   const title = 'Category admin';
   document.title = 'DumbMerch | ' + title;
@@ -31,7 +33,7 @@ export default function UpdateCategoryAdmin() {
             <form>
               <input
                 onChange={handleChange}
-                value={category.name}
+                value={category?.name}
                 placeholder="category"
                 className="input-edit-category mt-4"
               />

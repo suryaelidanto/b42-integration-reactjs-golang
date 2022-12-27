@@ -8,6 +8,8 @@ import CheckBox from '../components/form/CheckBox';
 
 import dataProduct from '../fakeData/product';
 
+import { API } from '../config/api';
+
 export default function UpdateProductAdmin() {
   const title = 'Product admin';
   document.title = 'DumbMerch | ' + title;
@@ -20,38 +22,7 @@ export default function UpdateProductAdmin() {
   const [preview, setPreview] = useState(null); //For image preview
   const [product, setProduct] = useState({}); //Store product data
 
-  // For handle if category selected
-  const handleChangeCategoryId = (e) => {
-    const id = e.target.value;
-    const checked = e.target.checked;
-
-    if (checked) {
-      // Save category id if checked
-      setCategoryId([...categoryId, parseInt(id)]);
-    } else {
-      // Delete category id from variable if unchecked
-      let newCategoryId = categoryId.filter((categoryIdItem) => {
-        return categoryIdItem != id;
-      });
-      setCategoryId(newCategoryId);
-    }
-  };
-
-  // Handle change data on form
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]:
-        e.target.type === 'file' ? e.target.files : e.target.value,
-    });
-
-    // Create image url for preview
-    if (e.target.type === 'file') {
-      let url = URL.createObjectURL(e.target.files[0]);
-      setPreview(url);
-    }
-  };
-
+  // Get category id selected
   useEffect(() => {
     const newCategoryId = product?.categories?.map((item) => {
       return item.id;
