@@ -4,21 +4,26 @@ import Masonry from 'react-masonry-css';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { UserContext } from '../context/userContext';
-
-// Import useQuery here ...
+import { useQuery } from 'react-query';
 
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/card/ProductCard';
 
 import imgEmpty from '../assets/empty.svg';
 
-// Get API config here ...
+// API config
+import { API } from '../config/api';
 
 export default function Product() {
   const title = 'Shop';
   document.title = 'DumbMerch | ' + title;
 
-  // Create process for fetching products data from database with useQuery here ...
+  let { data: products } = useQuery('productsCache', async () => {
+    const response = await API.get('/products');
+    return response.data.data;
+  });
+
+  console.log(products);
 
   const breakpointColumnsObj = {
     default: 6,

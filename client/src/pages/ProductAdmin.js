@@ -3,15 +3,14 @@ import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import ShowMoreText from 'react-show-more-text';
 import rupiahFormat from 'rupiah-format';
-
-// Import useQuery here ...
+import { useQuery, useMutation } from 'react-query';
 
 import NavbarAdmin from '../components/NavbarAdmin';
 import DeleteData from '../components/modal/DeleteData';
 
 import imgEmpty from '../assets/empty.svg';
 
-// Get API config here ...
+import { API } from '../config/api';
 
 export default function ProductAdmin() {
   let navigate = useNavigate();
@@ -19,7 +18,10 @@ export default function ProductAdmin() {
   const title = 'Product admin';
   document.title = 'DumbMerch | ' + title;
 
-  // Create process for fetching products data from database with useQuery here ...
+  let { data: products, refetch } = useQuery('productsCache', async () => {
+    const response = await API.get('/products');
+    return response.data.data;
+  });
 
   const addProduct = () => {
     navigate('/add-product');
